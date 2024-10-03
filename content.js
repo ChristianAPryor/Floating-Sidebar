@@ -9,8 +9,8 @@ if (!document.getElementById('toggle-sidebar-button')) {
   button.style.right = '0';
   button.style.zIndex = '999999';
   button.style.padding = '10px';
-  button.style.backgroundColor = '#008CBA';
-  button.style.backgroundImage = 'icon.png';
+  // button.style.backgroundColor = '#008CBA';
+  button.style.backgroundImage = '1.png';
   button.style.color = 'white';
   button.style.border = 'none';
   button.style.borderRadius = '50%';

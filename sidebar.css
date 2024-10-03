@@ -52,3 +52,11 @@ body {
   background: #555;
   /* Color when hovered */
 }
+
+#close-sidebar {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

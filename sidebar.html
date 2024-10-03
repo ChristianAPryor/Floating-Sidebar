@@ -64,11 +64,13 @@
 </head>
 
 <body>
-  <!-- Close Button -->
-  <button id="close-sidebar">Close Sidebar</button>
-  <!-- Transcription Section -->
   <div id="transcription-section">
-    <h2>Transcription</h2>
+    <div style="display: flex; justify-content: space-between;">
+      <p>Transcription</p>
+      <!-- Close Button -->
+      <button id="close-sidebar">X</button>
+    </div>
+    <!-- Transcription Section -->
     <div class="btn-content">
       <button id="start-btn" class="btn">Start</button>
       <button id="stop-btn" class="btn" style="display:none;">Stop</button>
@@ -80,7 +82,7 @@
 
   <!-- ChatGPT Section -->
   <div id="chat-section">
-    <h2>Chat with GPT</h2>
+    <p>Chat with GPT</p>
     <div id="chat-output" class="result-content"></div>
     <input type="text" id="chat-input" placeholder="Type a message..." />
     <button id="send-btn" class="btn">Send</button>

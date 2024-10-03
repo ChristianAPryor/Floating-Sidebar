@@ -111,8 +111,14 @@ document.addEventListener('DOMContentLoaded', function () {
       chatOutput.innerHTML += `<p><strong>Error:</strong> Something went wrong. Please try again later.</p>`;
     }
   }
-  
+
   initChatGPT();
+
+  chatInput.addEventListener('keydown', (event) => {
+    if (event.key === "Enter") {
+      sendBtn.click();
+    }
+  });
 
   sendBtn.addEventListener('click', async function () {
     const userInput = chatInput.value.trim();
