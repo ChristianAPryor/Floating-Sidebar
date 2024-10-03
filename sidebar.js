@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const chatOutput = document.getElementById('chat-output');
 
   let initChatGPT = async () => {
-    transcriptionOutput.innerHTML += `<p>${career}</p>`;
     try {
       const response = await fetch('https://api.openai.com/v1/completions', {
         method: 'POST',
