@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sidebar.css">
+  <title>Sidebar</title>
+  <style>
+    body {
+      display: flex;
+      z-index: 100;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    #transcription-section {
+      flex: 1;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      overflow-y: auto;
+    }
+
+    #chat-section {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+
+    #start-btn,
+    #stop-btn {
+      margin: 5px;
+      padding: 10px;
+      background-color: #008CBA;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #stop-btn {
+      background-color: #f44336;
+    }
+
+    #transcription-output {
+      margin-top: 10px;
+      height: 150px;
+      overflow-y: scroll;
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    #chat-output {
+      height: 150px;
+      background-color: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    #chat-input {
+      width: calc(100% - 20px);
+      padding: 10px;
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Close Button -->
+  <button id="close-sidebar">Close Sidebar</button>
+  <!-- Transcription Section -->
+  <div id="transcription-section">
+    <h2>Transcription</h2>
+    <button id="start-btn">Start Transcription</button>
+    <button id="stop-btn" style="display:none;">Stop Transcription</button>
+    <div id="transcription-output"></div>
+  </div>
+
+  <!-- ChatGPT Section -->
+  <div id="chat-section">
+    <h2>Chat with GPT</h2>
+    <div id="chat-output"></div>
+    <input type="text" id="chat-input" placeholder="Type a message..." />
+    <button id="send-btn">Send</button>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+
+</html>
