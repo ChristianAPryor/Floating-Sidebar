@@ -1,2 +1,2 @@
 # Floating-Sidebar
-You can use transcribe your voice.
+This is a Chrome Extension. It helps you transcribe your voice in any Chrome tab.
