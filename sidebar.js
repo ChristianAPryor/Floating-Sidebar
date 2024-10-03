@@ -1,7 +1,9 @@
 // Global variables for Web Speech API and recognition
 let recognition;
 let isRecognizing = false;
-let scriptBuffer = 'teststring';
+let scriptBuffer = '';
+let apiKey = 'Bearer YOUR_API_KEY';
+
 document.addEventListener('DOMContentLoaded', function () {
   const startBtn = document.getElementById('start-btn');
   const stopBtn = document.getElementById('stop-btn');
@@ -58,13 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   const copyTextToClipbard = (condition) => {
+    scriptBuffer = `The interviewer said "${scriptBuffer}" \n What should I answer? Please give me an impressive response that I can use directly. And fill the gap based on my experience and career.`;
     navigator.clipboard.writeText(scriptBuffer).then(() => {
       console.log("Text copied to clipboard!");
       if (condition === 'insert') {
         chatInput.value = scriptBuffer;
         sendBtn.click();
-        scriptBuffer = '';
       }
+      scriptBuffer = '';
     }).catch(err => {
       console.error("Error copying text: ", err);
     });
@@ -82,8 +85,36 @@ document.addEventListener('DOMContentLoaded', function () {
   const sendBtn = document.getElementById('send-btn');
   const chatOutput = document.getElementById('chat-output');
 
+  let initChatGPT = async () => {
+    transcriptionOutput.innerHTML += `<p>${career}</p>`;
+    try {
+      const response = await fetch('https://api.openai.com/v1/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': apiKey
+        },
+        body: JSON.stringify({
+          model: 'text-davinci-003',
+          prompt: "Hi~",
+          max_tokens: 150
+        })
+      });
+
+      const data = await response.json();
+      const reply = data.choices[0].text.trim();
+      // Display GPT-3 response
+      chatOutput.innerHTML += `<p> Success GPT Initialize -> ${reply}</p>`;
+      chatOutput.scrollTop = chatOutput.scrollHeight;  // Scroll to bottom
+    } catch (error) {
+      console.error('Error with ChatGPT API:', error);
+      chatOutput.innerHTML += `<p><strong>Error:</strong> Something went wrong. Please try again later.</p>`;
+    }
+  }
+  
+  initChatGPT();
+
   sendBtn.addEventListener('click', async function () {
-    console.log("jongtestes");
     const userInput = chatInput.value.trim();
     if (userInput === '') return;
 
@@ -97,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer YOUR_API_KEY`
+          'Authorization': apiKey
         },
         body: JSON.stringify({
           model: 'text-davinci-003',
@@ -126,8 +157,4 @@ document.addEventListener('DOMContentLoaded', function () {
       parent.postMessage({ action: 'close-sidebar' }, '*');
     });
   }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-
 });

@@ -5,7 +5,7 @@ if (!document.getElementById('toggle-sidebar-button')) {
   button.id = 'toggle-sidebar-button';
   // button.textContent = '<';
   button.style.position = 'fixed';
-  button.style.top = 'calc(50vh)';
+  button.style.top = 'calc(40vh)';
   button.style.right = '0';
   button.style.zIndex = '999999';
   button.style.padding = '10px';
@@ -13,7 +13,7 @@ if (!document.getElementById('toggle-sidebar-button')) {
   button.style.backgroundImage = 'icon.png';
   button.style.color = 'white';
   button.style.border = 'none';
-  button.style.borderRadius = '5px';
+  button.style.borderRadius = '50%';
   button.style.cursor = 'pointer';
   button.style.width = '20px';
   button.style.height = '20px';

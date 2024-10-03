@@ -44,15 +44,12 @@
     #transcription-output {
       margin-top: 10px;
       height: 150px;
-      overflow-y: scroll;
-      background-color: #f4f4f4;
       padding: 10px;
       border-radius: 5px;
     }
 
     #chat-output {
       height: 150px;
-      background-color: #f4f4f4;
       padding: 10px;
       border-radius: 5px;
       margin-bottom: 10px;
@@ -72,21 +69,24 @@
   <!-- Transcription Section -->
   <div id="transcription-section">
     <h2>Transcription</h2>
-    <button id="start-btn" class="btn">Start</button>
-    <button id="stop-btn" class="btn" style="display:none;">Stop</button>
-    <button id="insert-btn" class="btn">Insert</button>
-    <button id="copy-btn" class="btn">Copy</button>
-    <div id="transcription-output"></div>
+    <div class="btn-content">
+      <button id="start-btn" class="btn">Start</button>
+      <button id="stop-btn" class="btn" style="display:none;">Stop</button>
+      <button id="insert-btn" class="btn">Insert</button>
+      <button id="copy-btn" class="btn">Copy</button>
+    </div>
+    <div id="transcription-output" class="result-content"></div>
   </div>
 
   <!-- ChatGPT Section -->
   <div id="chat-section">
     <h2>Chat with GPT</h2>
-    <div id="chat-output"></div>
+    <div id="chat-output" class="result-content"></div>
     <input type="text" id="chat-input" placeholder="Type a message..." />
-    <button id="send-btn">Send</button>
+    <button id="send-btn" class="btn">Send</button>
   </div>
 
+  <script src="career.js"></script>
   <script src="sidebar.js"></script>
 </body>
 
