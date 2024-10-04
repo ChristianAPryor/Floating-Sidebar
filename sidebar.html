@@ -27,8 +27,7 @@
       overflow-y: auto;
     }
 
-    #start-btn,
-    #stop-btn {
+    .btn {
       margin: 5px;
       padding: 10px;
       background-color: #008CBA;
@@ -73,8 +72,10 @@
   <!-- Transcription Section -->
   <div id="transcription-section">
     <h2>Transcription</h2>
-    <button id="start-btn">Start Transcription</button>
-    <button id="stop-btn" style="display:none;">Stop Transcription</button>
+    <button id="start-btn" class="btn">Start</button>
+    <button id="stop-btn" class="btn" style="display:none;">Stop</button>
+    <button id="insert-btn" class="btn">Insert</button>
+    <button id="copy-btn" class="btn">Copy</button>
     <div id="transcription-output"></div>
   </div>
 

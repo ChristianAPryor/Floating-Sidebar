@@ -1,11 +1,14 @@
 // Global variables for Web Speech API and recognition
 let recognition;
 let isRecognizing = false;
-let scriptBuffer = '';
+let scriptBuffer = 'teststring';
 document.addEventListener('DOMContentLoaded', function () {
   const startBtn = document.getElementById('start-btn');
   const stopBtn = document.getElementById('stop-btn');
   const transcriptionOutput = document.getElementById('transcription-output');
+  const closeBtn = document.getElementById('close-sidebar');
+  const copyBtn = document.getElementById('copy-btn');
+  const insertBtn = document.getElementById('insert-btn');
 
   // Initialize Speech Recognition
   if ('webkitSpeechRecognition' in window) {
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
           finalTranscript += event.results[i][0].transcript;
         }
       }
-      scriptBuffer += '\n' + finalTranscript;
+      scriptBuffer += finalTranscript;
       transcriptionOutput.innerHTML += `<p>${finalTranscript}</p>`;
       transcriptionOutput.scrollTop = transcriptionOutput.scrollHeight;  // Scroll to bottom
     };
@@ -30,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Speech recognition error:', event);
     };
   } else {
-    alert('Speech recognition not supported in this browser.');
+    console.log('Speech recognition not supported in this browser.');
+
   }
 
   // Start Transcription
@@ -53,12 +57,33 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  const copyTextToClipbard = (condition) => {
+    navigator.clipboard.writeText(scriptBuffer).then(() => {
+      console.log("Text copied to clipboard!");
+      if (condition === 'insert') {
+        chatInput.value = scriptBuffer;
+        sendBtn.click();
+        scriptBuffer = '';
+      }
+    }).catch(err => {
+      console.error("Error copying text: ", err);
+    });
+  }
+  copyBtn.addEventListener('click', function () {
+    copyTextToClipbard('copy');
+  });
+
+  insertBtn.addEventListener('click', function () {
+    copyTextToClipbard('insert');
+  });
+
   // ChatGPT functionality
   const chatInput = document.getElementById('chat-input');
   const sendBtn = document.getElementById('send-btn');
   const chatOutput = document.getElementById('chat-output');
 
   sendBtn.addEventListener('click', async function () {
+    console.log("jongtestes");
     const userInput = chatInput.value.trim();
     if (userInput === '') return;
 
@@ -92,15 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
       chatOutput.innerHTML += `<p><strong>Error:</strong> Something went wrong. Please try again later.</p>`;
     }
   });
-});
 
-document.addEventListener('DOMContentLoaded', function () {
+
   // Add event listener to the close button
-  const closeButton = document.getElementById('close-sidebar');
-  if (closeButton) {
-    closeButton.addEventListener('click', function () {
+  if (closeBtn) {
+    closeBtn.addEventListener('click', function () {
       // Send a message to the parent window to close the sidebar
       parent.postMessage({ action: 'close-sidebar' }, '*');
     });
   }
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+
 });
